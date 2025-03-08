@@ -3,6 +3,7 @@
 # define CUB3D_H
 
 # include <stdio.h>
+#include <stddef.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -137,5 +138,8 @@ void    render_frame(t_game *game);
 /* cleanup.c */
 void    cleanup_game(t_game *game);
 void    error_exit(t_game *game, char *message);
+
+/*utils functions */
+void	*ft_memset(void *b, int c, size_t len);
 
 #endif
