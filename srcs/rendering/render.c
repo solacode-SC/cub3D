@@ -36,16 +36,20 @@ static void fill_screen(t_game *game)
 }
 
 // Render a frame
-void render_frame(t_game *game)
+int render_frame(void *param)
 {
+    t_game *game = (t_game *)param; // Cast param to t_game*
+
     if (!game->is_running)
-        return;
-    
+        return (0);
+
     // Fill the screen with basic colors
     fill_screen(game);
-    
+
     // TODO: Implement raycasting here
-    
+
     // Put the image to the window
     mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img, 0, 0);
+
+    return (0);
 }

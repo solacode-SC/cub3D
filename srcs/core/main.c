@@ -27,7 +27,8 @@ int main(int argc, char **argv)
     mlx_hook(game.mlx.win_ptr, 17, 0, close_window, &game);
     
     // Start game loop
-    mlx_loop_hook(game.mlx.mlx_ptr, (int (*)(void *))render_frame, &game);
+    mlx_loop_hook(game.mlx.mlx_ptr, render_frame, &game);
+
     mlx_loop(game.mlx.mlx_ptr);
     
     // Clean up (this won't be reached normally, but good practice)
