@@ -1,24 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 18:04:16 by mcombeau          #+#    #+#             */
-/*   Updated: 2021/12/08 12:12:23 by mcombeau         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-	DESCRIPTION :
-	The function ft_itoa converts the integer n into a string of characters.
-
-	RESULT VALUE :
-	The string of the converted integer.
-*/
 
 static size_t	ft_itoa_len(long num)
 {

@@ -1,27 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 16:51:42 by mcombeau          #+#    #+#             */
-/*   Updated: 2021/12/03 16:21:52 by mcombeau         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-	DESCRIPTION :
-	The function ft_strtrim removes any characters of the given set from
-	the beginning and end of the given string s1, and allocates sufficient
-	memory to store the trimmed copy of the string.
-
-	RETURN VALUE :
-	A pointer to the trimmed copy of the string.
-	NULL if the memory allocation fails.
-*/
 
 static int	is_set(char c, char const *set)
 {
