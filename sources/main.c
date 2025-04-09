@@ -3,16 +3,16 @@
 
 static void	print_controls(void)
 {
-	printf(CYAN "\n");
+	printf(RED "\n");
 	printf(RESET "\n");
-	printf(CYAN "\tW" RESET ": move forward\t");
-	printf(CYAN "\tS" RESET ": move backward\n");
-	printf(CYAN "\tA" RESET ": strafe left\t");
-	printf(CYAN "\tD" RESET ": strafe right\n");
-	printf(CYAN "\t<" RESET ": rotate left\t");
-	printf(CYAN "\t>" RESET ": rotate right\n");
+	printf(RED "\tW" RESET ": move forward\t");
+	printf(RED "\tS" RESET ": move backward\n");
+	printf(RED "\tA" RESET ": strafe left\t");
+	printf(RED "\tD" RESET ": strafe right\n");
+	printf(RED "\t<" RESET ": rotate left\t");
+	printf(RED "\t>" RESET ": rotate right\n");
 	if (BONUS)
-		printf(CYAN "\tMouse" RESET ": rotate view\n");
+		printf(RED "\tMouse" RESET ": rotate view\n");
 	printf("\n");
 }
 
