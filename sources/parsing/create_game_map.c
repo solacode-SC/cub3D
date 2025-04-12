@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_game_map.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anlabchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 14:55:23 by anlabchi          #+#    #+#             */
+/*   Updated: 2025/04/12 14:55:25 by anlabchi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -11,7 +22,7 @@ static int	count_map_lines(t_data *data, char **file, int i)
 	{
 		j = 0;
 		while (file[i][j] == ' ' || file[i][j] == '\t' || file[i][j] == '\r'
-		|| file[i][j] == '\v' || file[i][j] == '\f')
+			|| file[i][j] == '\v' || file[i][j] == '\f')
 			j++;
 		if (file[i][j] != '1')
 			break ;
@@ -23,8 +34,8 @@ static int	count_map_lines(t_data *data, char **file, int i)
 
 static int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	mapinfo->width = find_biggest_len(mapinfo, index);
 	i = 0;
@@ -38,7 +49,7 @@ static int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 		{
 			map_tab[i][j] = mapinfo->file[index][j];
 			j++;
-		}	
+		}
 		while (j < mapinfo->width)
 			map_tab[i][j++] = '\0';
 		i++;
@@ -69,8 +80,8 @@ static void	change_space_into_wall(t_data *data)
 	{
 		j = 0;
 		while (data->map[i][j] == ' ' || data->map[i][j] == '\t'
-		|| data->map[i][j] == '\r'
-		|| data->map[i][j] == '\v' || data->map[i][j] == '\f')
+			|| data->map[i][j] == '\r' || data->map[i][j] == '\v'
+			|| data->map[i][j] == '\f')
 			j++;
 		while (data->map[i][++j])
 		{

@@ -1,10 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anlabchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 14:53:38 by anlabchi          #+#    #+#             */
+/*   Updated: 2025/04/12 14:53:43 by anlabchi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
-**	Checks whether the arg given is a correct .cub extension, checks that
-**	 it exists and isn't a folder instead of a file.
-*/
 
 static bool	is_dir(char *arg)
 {
@@ -15,7 +21,7 @@ static bool	is_dir(char *arg)
 	fd = open(arg, O_DIRECTORY);
 	if (fd >= 0)
 	{
-		close (fd);
+		close(fd);
 		ret = true;
 	}
 	return (ret);
@@ -26,8 +32,7 @@ static bool	is_cub_file(char *arg)
 	size_t	len;
 
 	len = ft_strlen(arg);
-	if ((arg[len - 3] != 'c' || arg[len - 2] != 'u'
-			|| arg[len - 1] != 'b'
+	if ((arg[len - 3] != 'c' || arg[len - 2] != 'u' || arg[len - 1] != 'b'
 			|| arg[len - 4] != '.'))
 		return (false);
 	return (true);
@@ -38,8 +43,7 @@ static bool	is_xpm_file(char *arg)
 	size_t	len;
 
 	len = ft_strlen(arg);
-	if ((arg[len - 3] != 'x' || arg[len - 2] != 'p'
-			|| arg[len - 1] != 'm'
+	if ((arg[len - 3] != 'x' || arg[len - 2] != 'p' || arg[len - 1] != 'm'
 			|| arg[len - 4] != '.'))
 		return (false);
 	return (true);

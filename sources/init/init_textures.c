@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
 
 static int	*xpm_to_img(t_data *data, char *path)
@@ -21,8 +20,8 @@ static int	*xpm_to_img(t_data *data, char *path)
 	int		y;
 
 	init_texture_img(data, &tmp, path);
-	buffer = ft_calloc(1,
-			sizeof * buffer * data->texinfo.size * data->texinfo.size);
+	buffer = ft_calloc(1, sizeof *buffer * data->texinfo.size
+			* data->texinfo.size);
 	if (!buffer)
 		clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 	y = 0;
@@ -31,8 +30,8 @@ static int	*xpm_to_img(t_data *data, char *path)
 		x = 0;
 		while (x < data->texinfo.size)
 		{
-			buffer[y * data->texinfo.size + x]
-				= tmp.addr[y * data->texinfo.size + x];
+			buffer[y * data->texinfo.size + x] = tmp.addr[y * data->texinfo.size
+				+ x];
 			++x;
 		}
 		y++;
@@ -43,7 +42,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 
 void	init_textures(t_data *data)
 {
-	data->textures = ft_calloc(5, sizeof * data->textures);
+	data->textures = ft_calloc(5, sizeof *data->textures);
 	if (!data->textures)
 		clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 	data->textures[NORTH] = xpm_to_img(data, data->texinfo.north);

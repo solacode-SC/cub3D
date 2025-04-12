@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
 
 static bool	is_valid_pos_wall_collision(t_data *data, double x, double y)
@@ -24,7 +23,7 @@ static bool	is_valid_pos_in_map(t_data *data, double x, double y)
 {
 	if (x < 0.25 || x >= data->mapinfo.width - 1.25)
 		return (false);
-	if (y < 0.25 || y >= data->mapinfo.height -0.25)
+	if (y < 0.25 || y >= data->mapinfo.height - 0.25)
 		return (false);
 	return (true);
 }

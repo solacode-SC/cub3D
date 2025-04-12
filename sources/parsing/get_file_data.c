@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_file_data.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anlabchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 14:54:13 by anlabchi          #+#    #+#             */
+/*   Updated: 2025/04/12 14:54:18 by anlabchi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -58,13 +69,13 @@ static int	ignore_whitespaces_get_info(t_data *data, char **map, int i, int j)
 			if (fill_direction_textures(&data->texinfo, map[i], j) == ERR)
 				return (err_msg(data->mapinfo.path, ERR_TEX_INVALID, FAILURE));
 			return (BREAK);
-		}	
+		}
 		else
 		{
 			if (fill_color_textures(data, &data->texinfo, map[i], j) == ERR)
 				return (FAILURE);
 			return (BREAK);
-		}	
+		}
 	}
 	else if (ft_isdigit(map[i][j]))
 	{

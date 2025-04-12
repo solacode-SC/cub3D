@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 16:11:43 by soel-mou          #+#    #+#             */
+/*   Updated: 2025/04/12 16:11:44 by soel-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
 static int	ft_count_words(const char *s, char c)
 {
@@ -32,8 +43,8 @@ static char	**ft_malloc_strs(char **strs, const char *s, char c)
 	{
 		if (s[i] != c)
 			count++;
-		if ((s[i] == c && i > 0 && s[i - 1] != c)
-			|| (s[i] != c && s[i + 1] == '\0'))
+		if ((s[i] == c && i > 0 && s[i - 1] != c) || (s[i] != c && s[i
+				+ 1] == '\0'))
 		{
 			strs[x] = malloc(sizeof(char) * (count + 1));
 			if (!strs[x])

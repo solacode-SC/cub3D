@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 16:11:54 by soel-mou          #+#    #+#             */
+/*   Updated: 2025/04/12 16:11:55 by soel-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
 int	ft_malloc_count(char *stock)
 {
@@ -55,7 +66,7 @@ void	ft_get_the_spare(char *buffer)
 
 char	*ft_line_results(int ret, char *stock, char *buffer)
 {
-	char		*line;
+	char	*line;
 
 	line = NULL;
 	if (ft_strlen(stock) == 0)

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_color_textures.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anlabchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 14:56:31 by anlabchi          #+#    #+#             */
+/*   Updated: 2025/04/12 14:56:33 by anlabchi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -19,7 +30,7 @@ static bool	no_digit(char *str)
 
 static int	*copy_into_rgb_array(char **rgb_to_convert, int *rgb)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	while (rgb_to_convert[++i])

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anlabchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 14:56:01 by anlabchi          #+#    #+#             */
+/*   Updated: 2025/04/12 14:56:04 by anlabchi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -14,8 +25,8 @@ static int	check_map_elements(t_data *data, char **map_tab)
 		while (map_tab[i][j])
 		{
 			while (data->map[i][j] == ' ' || data->map[i][j] == '\t'
-			|| data->map[i][j] == '\r'
-			|| data->map[i][j] == '\v' || data->map[i][j] == '\f')
+				|| data->map[i][j] == '\r' || data->map[i][j] == '\v'
+				|| data->map[i][j] == '\f')
 				j++;
 			if (!(ft_strchr("10NSEW", map_tab[i][j])))
 				return (err_msg(data->mapinfo.path, ERR_INV_LETTER, FAILURE));
@@ -37,9 +48,8 @@ static int	check_position_is_valid(t_data *data, char **map_tab)
 
 	i = (int)data->player.pos_y;
 	j = (int)data->player.pos_x;
-	if (ft_strlen(map_tab[i - 1]) < (size_t)j
-		|| ft_strlen(map_tab[i + 1]) < (size_t)j
-		|| is_a_white_space(map_tab[i][j - 1]) == SUCCESS
+	if (ft_strlen(map_tab[i - 1]) < (size_t)j || ft_strlen(map_tab[i
+			+ 1]) < (size_t)j || is_a_white_space(map_tab[i][j - 1]) == SUCCESS
 		|| is_a_white_space(map_tab[i][j + 1]) == SUCCESS
 		|| is_a_white_space(map_tab[i - 1][j]) == SUCCESS
 		|| is_a_white_space(map_tab[i + 1][j]) == SUCCESS)

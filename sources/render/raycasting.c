@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
 
 static void	init_raycasting_info(int x, t_ray *ray, t_player *player)
@@ -49,7 +48,6 @@ static void	set_dda(t_ray *ray, t_player *player)
 	}
 }
 
-
 static void	perform_dda(t_data *data, t_ray *ray)
 {
 	int	hit;
@@ -69,8 +67,7 @@ static void	perform_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_y < 0.25
-			|| ray->map_x < 0.25
+		if (ray->map_y < 0.25 || ray->map_x < 0.25
 			|| ray->map_y > data->mapinfo.height - 0.25
 			|| ray->map_x > data->mapinfo.width - 1.25)
 			break ;

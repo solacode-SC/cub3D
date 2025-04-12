@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
 
 static int	get_mmap_offset(t_minimap *minimap, int mapsize, int pos)
@@ -34,7 +33,7 @@ static char	*add_minimap_line(t_data *d, t_minimap *m, int y)
 	char	*line;
 	int		x;
 
-	line = ft_calloc(m->size + 1, sizeof * line);
+	line = ft_calloc(m->size + 1, sizeof *line);
 	if (!line)
 		return (NULL);
 	x = 0;
@@ -62,7 +61,7 @@ static char	**generate_minimap(t_data *data, t_minimap *minimap)
 	char	**mmap;
 	int		y;
 
-	mmap = ft_calloc(minimap->size + 1, sizeof * mmap);
+	mmap = ft_calloc(minimap->size + 1, sizeof *mmap);
 	if (!mmap)
 		return (NULL);
 	y = 0;
@@ -88,10 +87,10 @@ void	render_minimap(t_data *data)
 	minimap.view_dist = MMAP_VIEW_DIST;
 	minimap.size = (2 * minimap.view_dist) + 1;
 	minimap.tile_size = MMAP_PIXEL_SIZE / (2 * minimap.view_dist);
-	minimap.offset_x = get_mmap_offset(&minimap,
-			data->mapinfo.width, (int)data->player.pos_x);
-	minimap.offset_y = get_mmap_offset(&minimap,
-			data->mapinfo.height, (int)data->player.pos_y);
+	minimap.offset_x = get_mmap_offset(&minimap, data->mapinfo.width,
+			(int)data->player.pos_x);
+	minimap.offset_y = get_mmap_offset(&minimap, data->mapinfo.height,
+			(int)data->player.pos_y);
 	minimap.map = generate_minimap(data, &minimap);
 	if (!minimap.map)
 	{

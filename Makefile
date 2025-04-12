@@ -1,6 +1,4 @@
-.PHONY: all re clean fclean bonus
 
-# Program file name
 NAME	= cub3D
 
 # Mode
@@ -14,11 +12,6 @@ CFLAGS	= -Werror -Wextra -Wall -g3 #-fsanitize=address
 MLX_PATH	= minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
-
-# Libft (Removed - Integrated into SRC)
-# LIBFT_PATH	= libft/
-# LIBFT_NAME	= libft.a
-# LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
 # Sources
 SRC_PATH = ./sources/
@@ -62,7 +55,9 @@ SRC		= 	main.c \
 			libft/ft_isspace.c \
 			libft/ft_bzero.c \
 			libft/ft_putchar_fd.c \
-			libft/ft_memset.c
+			libft/ft_memset.c \
+			libft/get_next_line.c \
+			libft/gnl_utils.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
@@ -119,3 +114,5 @@ fclean: clean
 
 # Clean + remove executable
 re: fclean all
+
+.PHONY: all re clean fclean bonus

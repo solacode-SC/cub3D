@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_data.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anlabchi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/12 14:55:38 by anlabchi          #+#    #+#             */
+/*   Updated: 2025/04/12 14:55:40 by anlabchi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -60,8 +71,8 @@ void	parse_data(char *path, t_data *data)
 	column = 0;
 	data->mapinfo.line_count = get_number_of_lines(path);
 	data->mapinfo.path = path;
-	data->mapinfo.file = ft_calloc(data->mapinfo.line_count \
-			+ 1, sizeof(char *));
+	data->mapinfo.file = ft_calloc(data->mapinfo.line_count + 1,
+			sizeof(char *));
 	if (!(data->mapinfo.file))
 	{
 		err_msg(NULL, ERR_MALLOC, 0);
