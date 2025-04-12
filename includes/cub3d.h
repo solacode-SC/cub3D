@@ -277,7 +277,7 @@ void					set_image_pixel(t_img *image, int x, int y, int color);
 
 void					render_minimap(t_data *data);
 
-void					render_minimap_image(t_data *data, t_minimap *minimap);
+void					render_minimap_image(t_data *data, int tile_size);
 
 void					listen_for_input(t_data *data);
 
