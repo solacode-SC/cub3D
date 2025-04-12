@@ -13,12 +13,10 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "colors.h"
 # include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
-# include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -27,6 +25,13 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
+
+// Colors (merged from colors.h)
+# define RESET "\e[0m"
+# define RED "\e[31m"
+# define YELLOW "\e[33m"
+# define BRIGHT_RED "\e[91m"
+# define BRIGHT_YELLOW "\e[93m"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -59,7 +64,6 @@
 # define DIST_EDGE_MOUSE_WRAP 20
 
 # define MMAP_PIXEL_SIZE 128
-# define MMAP_VIEW_DIST 4
 # define MMAP_COLOR_PLAYER 0x00FF00
 # define MMAP_COLOR_WALL 0x808080
 # define MMAP_COLOR_FLOOR 0xE6E6E6
@@ -108,8 +112,6 @@ enum					e_texture_index
 	WEST = 3
 };
 
-typedef unsigned long	t_ulong;
-
 typedef struct s_img
 {
 	void				*img;
@@ -136,17 +138,6 @@ typedef struct s_texinfo
 	int					x;
 	int					y;
 }						t_texinfo;
-
-typedef struct s_minimap
-{
-	char				**map;
-	t_img				*img;
-	int					size;
-	int					offset_x;
-	int					offset_y;
-	int					view_dist;
-	int					tile_size;
-}						t_minimap;
 
 typedef struct s_mapinfo
 {
@@ -299,7 +290,6 @@ int						err_msg(char *detail, char *str, int code);
 int						err_msg_val(int detail, char *str, int code);
 
 void					debug_display_data(t_data *data);
-void					debug_display_minimap(t_minimap *minimap);
 void					debug_display_player(t_data *data);
 void					debug_print_char_tab(char **tab);
 
