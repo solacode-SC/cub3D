@@ -6,7 +6,7 @@
 /*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 22:26:15 by soel-mou          #+#    #+#             */
-/*   Updated: 2025/04/11 22:26:16 by soel-mou         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:09:10 by soel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	init_texture_pixels(t_data *data)
 	if (data->texture_pixels)
 		free_tab((void **)data->texture_pixels);
 	data->texture_pixels = ft_calloc(data->win_height + 1,
-			sizeof *data->texture_pixels);
+			sizeof * data->texture_pixels);
 	if (!data->texture_pixels)
 		clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 	i = 0;
 	while (i < data->win_height)
 	{
 		data->texture_pixels[i] = ft_calloc(data->win_width + 1,
-				sizeof *data->texture_pixels);
+				sizeof * data->texture_pixels);
 		if (!data->texture_pixels[i])
 			clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 		i++;

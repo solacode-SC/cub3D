@@ -14,9 +14,9 @@
 
 void	render_minimap(t_data *data)
 {
-	int		tile_size_x;
-	int		tile_size_y;
-	int		tile_size;
+	int	tile_size_x;
+	int	tile_size_y;
+	int	tile_size;
 
 	tile_size_x = MMAP_PIXEL_SIZE / data->mapinfo.width;
 	tile_size_y = MMAP_PIXEL_SIZE / data->mapinfo.height;
@@ -24,7 +24,6 @@ void	render_minimap(t_data *data)
 	if (tile_size_y < tile_size_x)
 		tile_size = tile_size_y;
 	if (tile_size < 1)
-		tile_size = 1; 
-
+		tile_size = 1;
 	render_minimap_image(data, tile_size);
 }

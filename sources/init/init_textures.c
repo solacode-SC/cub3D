@@ -6,7 +6,7 @@
 /*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 22:26:44 by soel-mou          #+#    #+#             */
-/*   Updated: 2025/04/11 22:26:45 by soel-mou         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:11:06 by soel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 	int		y;
 
 	init_texture_img(data, &tmp, path);
-	buffer = ft_calloc(1, sizeof *buffer * data->texinfo.size
+	buffer = ft_calloc(1, sizeof * buffer * data->texinfo.size
 			* data->texinfo.size);
 	if (!buffer)
 		clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
@@ -42,7 +42,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 
 void	init_textures(t_data *data)
 {
-	data->textures = ft_calloc(5, sizeof *data->textures);
+	data->textures = ft_calloc(5, sizeof * data->textures);
 	if (!data->textures)
 		clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 	data->textures[NORTH] = xpm_to_img(data, data->texinfo.north);

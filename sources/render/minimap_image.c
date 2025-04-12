@@ -6,13 +6,14 @@
 /*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 22:26:00 by soel-mou          #+#    #+#             */
-/*   Updated: 2025/04/11 22:26:01 by soel-mou         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:17:52 by soel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_minimap_tile_pixels(t_data *data, int tile_size, t_coords map_pos, int color)
+static void	set_minimap_tile_pixels(t_data *data, int tile_size,
+		t_coords map_pos, int color)
 {
 	int	i;
 	int	j;
@@ -27,8 +28,9 @@ static void	set_minimap_tile_pixels(t_data *data, int tile_size, t_coords map_po
 		{
 			pixel_x = map_pos.x * tile_size + j;
 			pixel_y = map_pos.y * tile_size + i;
-			if (pixel_x >= 0 && pixel_x < data->minimap.size_line / (data->minimap.pixel_bits / 8)
-				&& pixel_y >= 0 && pixel_y < data->mapinfo.height * tile_size)
+			if (pixel_x >= 0 && pixel_x < data->minimap.size_line
+				/ (data->minimap.pixel_bits / 8) && pixel_y >= 0
+				&& pixel_y < data->mapinfo.height * tile_size)
 				set_image_pixel(&data->minimap, pixel_x, pixel_y, color);
 			j++;
 		}
@@ -38,14 +40,16 @@ static void	set_minimap_tile_pixels(t_data *data, int tile_size, t_coords map_po
 
 static void	draw_minimap_tile(t_data *data, int tile_size, int x, int y)
 {
-	char	tile = data->map[y][x];
-	t_coords pos = {x, y};
+	char		tile;
+	t_coords	pos;
 
+	tile = data->map[y][x];
+	pos = {x, y};
 	if (tile == '1')
 		set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_WALL);
-	else if (tile == '0' || ft_strchr("NSEW", tile)) // Treat player start pos as floor
+	else if (tile == '0' || ft_strchr("NSEW", tile))
 		set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_FLOOR);
-	else // Empty space or characters outside map
+	else
 		set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_SPACE);
 }
 
@@ -57,24 +61,22 @@ static void	draw_player_on_minimap(t_data *data, int tile_size)
 	int	i;
 	int	j;
 
-	// Calculate player pixel position
 	player_pixel_x = (int)(data->player.pos_x * tile_size);
 	player_pixel_y = (int)(data->player.pos_y * tile_size);
-
-	// Simple square marker for the player
-	player_marker_size = tile_size / 2; // Make marker smaller than tile
+	player_marker_size = tile_size / 2;
 	if (player_marker_size < 2)
-		player_marker_size = 2; // Minimum marker size
-
+		player_marker_size = 2;
 	i = -player_marker_size / 2;
 	while (i <= player_marker_size / 2)
 	{
 		j = -player_marker_size / 2;
 		while (j <= player_marker_size / 2)
 		{
-			if (player_pixel_x + j >= 0 && player_pixel_x + j < data->mapinfo.width * tile_size
-				&& player_pixel_y + i >= 0 && player_pixel_y + i < data->mapinfo.height * tile_size)
-				set_image_pixel(&data->minimap, player_pixel_x + j, player_pixel_y + i, MMAP_COLOR_PLAYER);
+			if (player_pixel_x + j >= 0 && player_pixel_x
+				+ j < data->mapinfo.width * tile_size && player_pixel_y + i >= 0
+				&& player_pixel_y + i < data->mapinfo.height * tile_size)
+				set_image_pixel(&data->minimap, player_pixel_x + j,
+					player_pixel_y + i, MMAP_COLOR_PLAYER);
 			j++;
 		}
 		i++;
@@ -83,9 +85,9 @@ static void	draw_player_on_minimap(t_data *data, int tile_size)
 
 static void	draw_minimap(t_data *data, int tile_size)
 {
-	int	x;
-	int	y;
-	t_coords pos;
+	int			x;
+	int			y;
+	t_coords	pos;
 
 	y = 0;
 	while (y < data->mapinfo.height)
@@ -98,7 +100,7 @@ static void	draw_minimap(t_data *data, int tile_size)
 			if (data->map[y] && x < (int)ft_strlen(data->map[y]))
 				draw_minimap_tile(data, tile_size, x, y);
 			else
-				set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_SPACE); // Draw empty space if outside map bounds
+				set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_SPACE);
 			x++;
 		}
 		y++;
@@ -113,10 +115,9 @@ void	render_minimap_image(t_data *data, int tile_size)
 
 	img_width = data->mapinfo.width * tile_size;
 	img_height = data->mapinfo.height * tile_size;
-
 	init_img(data, &data->minimap, img_width, img_height);
 	draw_minimap(data, tile_size);
-	mlx_put_image_to_window(data->mlx, data->win, data->minimap.img,
-		5, data->win_height - img_height - 5); // Position in bottom-left corner with padding
+	mlx_put_image_to_window(data->mlx, data->win, data->minimap.img, 5,
+		data->win_height - img_height - 5);
 	mlx_destroy_image(data->mlx, data->minimap.img);
 }
