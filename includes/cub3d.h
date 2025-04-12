@@ -15,7 +15,6 @@
 # define CUB3D_H
 
 # include "colors.h"
-# include "libft.h"
 # include "mlx.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -91,6 +90,21 @@
 # define ERR_MLX_START "Could not start mlx"
 # define ERR_MLX_WIN "Could not create mlx window"
 # define ERR_MLX_IMG "Could not create mlx image"
+
+// Prototypes for included libft functions
+int		ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
+int		ft_isdigit(int c);
+int		ft_isprint(int c);
+int		ft_isspace(int c);
+void	*ft_memset(void *b, int c, size_t len);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
+char	**ft_split(char const *s, char c);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
 
 enum e_output
 {
