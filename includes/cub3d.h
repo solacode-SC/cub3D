@@ -6,7 +6,7 @@
 /*   By: soel-mou <soel-mou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 22:27:12 by soel-mou          #+#    #+#             */
-/*   Updated: 2025/04/12 15:26:34 by soel-mou         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:03:13 by soel-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
+#include <fcntl.h>
 
 // Colors (merged from colors.h)
 # define RESET "\e[0m"
@@ -112,12 +113,18 @@ enum					e_texture_index
 	WEST = 3
 };
 
-// Simple struct for coordinates
-typedef struct s_coords
+typedef struct s_minimap
 {
-	int		x;
-	int		y;
-}						t_coords;
+	char				**map;
+	t_img				*img;
+	int					size;
+	int					offset_x;
+	int					offset_y;
+	int					view_dist;
+	int					tile_size;
+}						t_minimap;
+
+
 
 typedef struct s_img
 {
@@ -127,6 +134,13 @@ typedef struct s_img
 	int					size_line;
 	int					endian;
 }						t_img;
+
+// Simple struct for coordinates
+typedef struct s_coords
+{
+	int		x;
+	int		y;
+}						t_coords;
 
 typedef struct s_texinfo
 {
