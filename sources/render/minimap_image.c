@@ -53,33 +53,44 @@ static void	draw_minimap_tile(t_data *data, int tile_size, int x, int y)
 		set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_SPACE);
 }
 
+// Helper to draw a single pixel of the player marker with bounds check
+static void	draw_marker_pixel(t_data *data, t_coords center, t_coords offset,
+							 int map_pixel_w, int map_pixel_h)
+{
+	int	px;
+	int	py;
+
+	px = center.x + offset.x;
+	py = center.y + offset.y;
+	if (px >= 0 && px < map_pixel_w && py >= 0 && py < map_pixel_h)
+		set_image_pixel(&data->minimap, px, py, MMAP_COLOR_PLAYER);
+}
+
 static void	draw_player_on_minimap(t_data *data, int tile_size)
 {
-	int	player_pixel_x;
-	int	player_pixel_y;
-	int	player_marker_size;
-	int	i;
-	int	j;
+	t_coords	center, offset;
+	int			player_marker_size, map_pixel_w, map_pixel_h;
 
-	player_pixel_x = (int)(data->player.pos_x * tile_size);
-	player_pixel_y = (int)(data->player.pos_y * tile_size);
+	center.x = (int)(data->player.pos_x * tile_size);
+	center.y = (int)(data->player.pos_y * tile_size);
+
 	player_marker_size = tile_size / 2;
 	if (player_marker_size < 2)
 		player_marker_size = 2;
-	i = -player_marker_size / 2;
-	while (i <= player_marker_size / 2)
+
+	map_pixel_w = data->mapinfo.width * tile_size;
+	map_pixel_h = data->mapinfo.height * tile_size;
+
+	offset.y = -player_marker_size / 2;
+	while (offset.y <= player_marker_size / 2)
 	{
-		j = -player_marker_size / 2;
-		while (j <= player_marker_size / 2)
+		offset.x = -player_marker_size / 2;
+		while (offset.x <= player_marker_size / 2)
 		{
-			if (player_pixel_x + j >= 0 && player_pixel_x
-				+ j < data->mapinfo.width * tile_size && player_pixel_y + i >= 0
-				&& player_pixel_y + i < data->mapinfo.height * tile_size)
-				set_image_pixel(&data->minimap, player_pixel_x + j,
-					player_pixel_y + i, MMAP_COLOR_PLAYER);
-			j++;
+			draw_marker_pixel(data, center, offset, map_pixel_w, map_pixel_h);
+			offset.x++;
 		}
-		i++;
+		offset.y++;
 	}
 }
 
