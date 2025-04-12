@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	set_minimap_tile_pixels(t_data *data, int tile_size, int map_x, int map_y, int color)
+static void	set_minimap_tile_pixels(t_data *data, int tile_size, t_coords map_pos, int color)
 {
 	int	i;
 	int	j;
@@ -25,9 +25,10 @@ static void	set_minimap_tile_pixels(t_data *data, int tile_size, int map_x, int 
 		j = 0;
 		while (j < tile_size)
 		{
-			pixel_x = map_x * tile_size + j;
-			pixel_y = map_y * tile_size + i;
-			if (pixel_x < data->mapinfo.width * tile_size && pixel_y < data->mapinfo.height * tile_size)
+			pixel_x = map_pos.x * tile_size + j;
+			pixel_y = map_pos.y * tile_size + i;
+			if (pixel_x >= 0 && pixel_x < data->minimap.size_line / (data->minimap.pixel_bits / 8)
+				&& pixel_y >= 0 && pixel_y < data->mapinfo.height * tile_size)
 				set_image_pixel(&data->minimap, pixel_x, pixel_y, color);
 			j++;
 		}
@@ -38,13 +39,14 @@ static void	set_minimap_tile_pixels(t_data *data, int tile_size, int map_x, int 
 static void	draw_minimap_tile(t_data *data, int tile_size, int x, int y)
 {
 	char	tile = data->map[y][x];
+	t_coords pos = {x, y};
 
 	if (tile == '1')
-		set_minimap_tile_pixels(data, tile_size, x, y, MMAP_COLOR_WALL);
+		set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_WALL);
 	else if (tile == '0' || ft_strchr("NSEW", tile)) // Treat player start pos as floor
-		set_minimap_tile_pixels(data, tile_size, x, y, MMAP_COLOR_FLOOR);
+		set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_FLOOR);
 	else // Empty space or characters outside map
-		set_minimap_tile_pixels(data, tile_size, x, y, MMAP_COLOR_SPACE);
+		set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_SPACE);
 }
 
 static void	draw_player_on_minimap(t_data *data, int tile_size)
@@ -83,6 +85,7 @@ static void	draw_minimap(t_data *data, int tile_size)
 {
 	int	x;
 	int	y;
+	t_coords pos;
 
 	y = 0;
 	while (y < data->mapinfo.height)
@@ -90,10 +93,12 @@ static void	draw_minimap(t_data *data, int tile_size)
 		x = 0;
 		while (x < data->mapinfo.width)
 		{
+			pos.x = x;
+			pos.y = y;
 			if (data->map[y] && x < (int)ft_strlen(data->map[y]))
 				draw_minimap_tile(data, tile_size, x, y);
 			else
-				set_minimap_tile_pixels(data, tile_size, x, y, MMAP_COLOR_SPACE); // Draw empty space if outside map bounds
+				set_minimap_tile_pixels(data, tile_size, pos, MMAP_COLOR_SPACE); // Draw empty space if outside map bounds
 			x++;
 		}
 		y++;

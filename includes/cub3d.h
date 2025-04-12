@@ -112,6 +112,13 @@ enum					e_texture_index
 	WEST = 3
 };
 
+// Simple struct for coordinates
+typedef struct s_coords
+{
+	int		x;
+	int		y;
+}						t_coords;
+
 typedef struct s_img
 {
 	void				*img;
